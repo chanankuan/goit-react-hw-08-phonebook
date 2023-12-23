@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Montserrat:wght@400;500;600;700&display=swap');
+
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 999;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 8px solid #fff;
+  border-top: 8px solid #c21010;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+span {
+  font-family: 'Festive';
+  font-size: 3rem;
+  margin-top: 5px;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blink {
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+  0% {
+    color: #c21010;
+  }
+  100% {
+    color: #fff;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

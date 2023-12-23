@@ -7,6 +7,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: var(--chakra-colors-gray-200); */
+  /* background-color: black; */
+  background: rgb(80, 0, 91);
+  background: linear-gradient(
+      0deg,
+      rgba(80, 0, 91, 1) 0%,
+      rgba(2, 0, 36, 1) 100%
+    )
+    no-repeat !important;
+  height: 100vh;
 }
 
 code {
