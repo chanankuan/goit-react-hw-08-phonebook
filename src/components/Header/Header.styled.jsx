@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Container } from 'components/Common';
 import { Link } from 'react-router-dom';
 
 export const StyledHeader = styled.header`
@@ -6,6 +7,16 @@ export const StyledHeader = styled.header`
   top: 0;
   width: 100%;
   z-index: 99;
+`;
+
+export const StyledContainer = styled(Container)`
+  padding-top: 40px;
+`;
+
+export const StyledNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const LogoLink = styled(Link)`

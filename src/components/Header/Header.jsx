@@ -1,41 +1,21 @@
-import { useSelector } from 'react-redux';
-import { Flex } from '@chakra-ui/react';
-import { LogoLink, StyledHeader } from './Header.styled';
-import { Container, NavLink } from 'components/Common';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { StyledContainer, StyledHeader, StyledNav } from './Header.styled';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthMenu from 'components/AuthMenu/AuthMenu';
+import { useAuth } from 'hooks/useAuth';
+import Navigation from 'components/Navigation/Navigation';
 
 const Header = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   return (
-    <>
-      <StyledHeader>
-        <Container
-          style={{
-            paddingTop: 40,
-          }}
-        >
-          <nav
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Flex alignItems="center" columnGap={5}>
-              <LogoLink to="/">Phonebook</LogoLink>
-              {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
-            </Flex>
-
-            <Flex alignItems="center" columnGap={5}>
-              {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-            </Flex>
-          </nav>
-        </Container>
-      </StyledHeader>
-    </>
+    <StyledHeader>
+      <StyledContainer>
+        <StyledNav>
+          <Navigation />
+          {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+        </StyledNav>
+      </StyledContainer>
+    </StyledHeader>
   );
 };
 

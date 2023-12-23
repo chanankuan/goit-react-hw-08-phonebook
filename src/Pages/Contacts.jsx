@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AddIcon } from '@chakra-ui/icons';

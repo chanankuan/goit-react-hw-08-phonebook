@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { BsPencilSquare } from 'react-icons/bs';

@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './LightRope.module.scss';
 
 const LightRope = () => {

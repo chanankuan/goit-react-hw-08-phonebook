@@ -1,4 +1,3 @@
-import React from 'react';
 import Snowfall from 'react-snowfall';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';

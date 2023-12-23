@@ -1,4 +1,3 @@
-import React from 'react';
 import { Centerer, Button } from './ChristmasButton.styled';
 
 const ChristmasButton = ({ children, onClick }) => {
