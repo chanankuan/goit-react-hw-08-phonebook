@@ -21,6 +21,7 @@ const Layout = () => {
           position: 'fixed',
           width: '100vw',
           height: '100vh',
+          zIndex: 999,
         }}
       />
 

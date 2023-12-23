@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -22,7 +22,8 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const CFaEnvelope = chakra(FaEnvelope);
 
-const App = () => {
+const RegisterForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -41,6 +42,7 @@ const App = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(signup(formData));
+    navigate('/contacts');
     setFormData({ name: '', email: '', password: '' });
   };
 
@@ -155,4 +157,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default RegisterForm;

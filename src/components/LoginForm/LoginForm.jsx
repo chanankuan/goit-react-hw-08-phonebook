@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -22,7 +22,8 @@ import { login } from '../../redux/auth/operations';
 const CFaLock = chakra(FaLock);
 const CFaEnvelope = chakra(FaEnvelope);
 
-const App = () => {
+const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -37,6 +38,7 @@ const App = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(login(formData));
+    navigate('/contacts');
     setFormData({ email: '', password: '' });
   };
 
@@ -140,4 +142,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default LoginForm;

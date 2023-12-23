@@ -34,13 +34,13 @@ export const App = () => {
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
               <PublicRoute redirectTo="contacts" component={<Login />} />
             }
           />
           <Route
-            path="/contacts"
+            path="contacts"
             element={
               <PrivateRoute redirectTo="login" component={<Contacts />} />
             }

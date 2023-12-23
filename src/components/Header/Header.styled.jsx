@@ -22,6 +22,7 @@ export const LogoLink = styled(Link)`
 
 export const NavLink = styled(Link)`
   text-decoration: none;
+  font-size: 20px;
   padding: 10px 5px;
   cursor: pointer;
   transition: color 200ms ease-in-out, font-weight 200ms ease-in-out;
