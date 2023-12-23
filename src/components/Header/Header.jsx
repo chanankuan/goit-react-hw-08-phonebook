@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Flex } from '@chakra-ui/react';
-// import { Button } from '@chakra-ui/react';
 import { LogoLink, NavLink, StyledHeader, Text } from './Header.styled';
 import { Container } from 'components/Common';
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';

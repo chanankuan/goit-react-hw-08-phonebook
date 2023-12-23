@@ -30,15 +30,13 @@
   animation: spin 1s linear infinite;
 }
 
-span {
+.blink {
   font-family: 'Festive';
   font-size: 3rem;
   margin-top: 5px;
   color: #fff;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.blink {
   animation-name: blink;
   animation-duration: 3s;
   animation-timing-function: ease-in;

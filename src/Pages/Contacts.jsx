@@ -8,6 +8,7 @@ import { Container } from 'components/Common';
 import { fetchContacts } from '../redux/contacts/operations';
 import ContactsList from 'components/ContactsList/ContactsList';
 import ContactForm from 'components/ContactForm/ContactForm';
+import Filter from 'components/Filter/Filter';
 
 const Contacts = () => {
   const contacts = useSelector(selectContacts);
@@ -21,7 +22,10 @@ const Contacts = () => {
   return (
     <Container style={{ paddingTop: 116 }}>
       {contacts.length > 0 ? (
-        <ContactsList />
+        <>
+          <Filter />
+          <ContactsList />
+        </>
       ) : (
         <Heading as="h1" size="lg">
           No contacts yet.

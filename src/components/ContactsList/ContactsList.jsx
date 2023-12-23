@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { BsPencilSquare } from 'react-icons/bs';
 import {
+  Avatar,
   Icon,
   Grid,
   GridItem,
@@ -32,7 +33,8 @@ const ContactsList = () => {
             transition="transform 100ms ease-in-out"
             _hover={{ transform: 'scale(1.02)', boxShadow: '' }}
           >
-            <Grid templateColumns="150px 1fr 40px 40px" alignItems="center">
+            <Grid templateColumns="60px 1fr 1fr 40px 40px" alignItems="center">
+              <Avatar name={name} />
               <Heading size="md">{name}</Heading>
               <Text>{number}</Text>
               <Button padding="5px">
