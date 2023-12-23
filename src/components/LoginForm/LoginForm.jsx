@@ -16,7 +16,7 @@ import {
   FormHelperText,
   InputRightElement,
 } from '@chakra-ui/react';
-import { FaUserAlt, FaLock, FaEnvelope } from 'react-icons/fa';
+import { FaLock, FaEnvelope } from 'react-icons/fa';
 import { login } from '../../redux/auth/operations';
 
 const CFaLock = chakra(FaLock);
