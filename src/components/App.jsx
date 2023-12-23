@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUser } from '../redux/auth/operations';
 import { PublicRoute } from '../PublicRoute';
 import { PrivateRoute } from '../PrivateRoute';
-import { selectIsLoading } from '../redux/contacts/selectors';
-import { selectIsRefreshing, selectToken } from '../redux/auth/selectors';
-import Loader from './Loader/Loader';
+import { selectToken } from '../redux/auth/selectors';
 
 const Layout = lazy(() => import('components/Layout/Layout'));
 const Home = lazy(() => import('Pages/Home'));
@@ -17,8 +15,6 @@ const Contacts = lazy(() => import('Pages/Contacts'));
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  const isLoading = useSelector(selectIsLoading);
-  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     if (token) {
@@ -52,8 +48,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-
-      {(isLoading || isRefreshing) && <Loader />}
     </Suspense>
   );
 };
