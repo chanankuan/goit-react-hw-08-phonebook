@@ -6,12 +6,15 @@ import Header from 'components/Header/Header';
 import Loader from '../Loader/Loader';
 import { selectIsLoading } from '../../redux/contacts/selectors';
 import { selectIsRefreshing } from '../../redux/auth/selectors';
+import LightRope from 'components/LightRope/LightRope';
 
 const Layout = () => {
   const isLoading = useSelector(selectIsLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
   return (
     <>
+      <LightRope />
+
       <Header />
       <Outlet />
 

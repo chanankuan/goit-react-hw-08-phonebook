@@ -1,23 +1,16 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Flex } from '@chakra-ui/react';
-import { LogoLink, NavLink, StyledHeader, Text } from './Header.styled';
-import { Container } from 'components/Common';
-import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
-import { logout } from '../../redux/auth/operations';
-import LightRope from 'components/LightRope/LightRope';
-import ChristmasButton from 'components/Button/ChristmasButton';
+import { LogoLink, StyledHeader } from './Header.styled';
+import { Container, NavLink } from 'components/Common';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import UserMenu from 'components/UserMenu/UserMenu';
+import AuthMenu from 'components/AuthMenu/AuthMenu';
 
 const Header = () => {
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const user = useSelector(selectUser);
-
-  const handleLogout = () => dispatch(logout());
 
   return (
     <>
-      <LightRope />
       <StyledHeader>
         <Container
           style={{
@@ -36,17 +29,9 @@ const Header = () => {
               {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
             </Flex>
 
-            {isLoggedIn ? (
-              <Flex alignItems="center" columnGap={5}>
-                <Text>Welcome, {user.name}</Text>
-                <ChristmasButton onClick={handleLogout}>Logout</ChristmasButton>
-              </Flex>
-            ) : (
-              <Flex alignItems="center" columnGap={5}>
-                <NavLink to="/register">Sign up</NavLink>
-                <NavLink to="/login">Sign in</NavLink>
-              </Flex>
-            )}
+            <Flex alignItems="center" columnGap={5}>
+              {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+            </Flex>
           </nav>
         </Container>
       </StyledHeader>
