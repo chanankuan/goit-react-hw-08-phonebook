@@ -1,21 +1,19 @@
 import Snowfall from 'react-snowfall';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Header from 'components/Header/Header';
 import Loader from '../Loader/Loader';
-import { selectIsLoading } from '../../redux/contacts/selectors';
-import { selectIsRefreshing } from '../../redux/auth/selectors';
 import LightRope from 'components/LightRope/LightRope';
+import { Suspense } from 'react';
 
 const Layout = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const isRefreshing = useSelector(selectIsRefreshing);
   return (
     <>
       <LightRope />
 
       <Header />
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
 
       <Snowfall
         style={{
@@ -26,8 +24,6 @@ const Layout = () => {
           zIndex: 999,
         }}
       />
-
-      {(isLoading || isRefreshing) && <Loader />}
     </>
   );
 };
