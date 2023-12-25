@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[6],{3006:function(e,t,n){n.r(t);var r=n(9589),s=n(5973),a=n(184);t.default=function(){return(0,a.jsxs)(s.W2,{style:{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%, -50%)",width:"100%",paddingTop:116,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"},children:[(0,a.jsx)(r.X,{children:"Welcome back and"}),(0,a.jsx)(r.X,{children:"Merry fucking Christmas"})]})}}}]);
+//# sourceMappingURL=6.7fffe0dd.chunk.js.map
