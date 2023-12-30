@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -14,6 +14,7 @@ import {
   FormControl,
   FormHelperText,
   InputRightElement,
+  Text,
 } from '@chakra-ui/react';
 import { FaLock, FaEnvelope } from 'react-icons/fa';
 import { login } from '../../redux/auth/operations';
@@ -26,6 +27,7 @@ const CFaEnvelope = chakra(FaEnvelope);
 const LoginForm = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
+  const [shake, setShake] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -39,11 +41,22 @@ const LoginForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(login(formData));
-    setFormData({ email: '', password: '' });
+    // setFormData({ email: '', password: '' });
   };
 
+  useEffect(() => {
+    if (error === 'Unable to login') {
+      setShake(true);
+      const id = setTimeout(() => {
+        setShake(false); // Reset shake animation after a short delay
+      }, 500);
+
+      return () => clearTimeout(id);
+    }
+  }, [error]);
+
   return (
-    <AnimatedFlex error={error}>
+    <AnimatedFlex shake={shake}>
       <Stack
         flexDir="column"
         mb="2"
@@ -61,6 +74,9 @@ const LoginForm = () => {
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >
+              {error === 'Unable to login' && (
+                <Text color="red">Incorrect email or password.</Text>
+              )}
               <FormControl>
                 <InputGroup flexDirection="column">
                   <InputLeftElement

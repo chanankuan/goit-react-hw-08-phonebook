@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  Flex,
+  // Flex,
   Heading,
   Input,
   Button,
@@ -19,6 +19,7 @@ import {
 import { FaUserAlt, FaLock, FaEnvelope } from 'react-icons/fa';
 import { signup } from '../../redux/auth/operations';
 import { validateEmail, validatePass } from 'utils/validation';
+import { AnimatedFlex } from 'components/LoginForm/LoginForm.styled';
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -27,6 +28,7 @@ const CFaEnvelope = chakra(FaEnvelope);
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [isInvalid, setIsInvalid] = useState({ email: null, password: null });
+  const [shake, setShake] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -58,12 +60,22 @@ const RegisterForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (Object.values(isInvalid).includes(false)) {
+      setShake(true);
+      setTimeout(() => {
+        setShake(false); // Reset shake animation after a short delay
+      }, 500);
+      return;
+    }
+
     dispatch(signup(formData));
     setFormData({ name: '', email: '', password: '' });
   };
 
   return (
-    <Flex
+    <AnimatedFlex
+      shake={shake}
       flexDirection="column"
       width="100wh"
       height="100vh"
@@ -78,7 +90,7 @@ const RegisterForm = () => {
       >
         <Avatar bg="teal.500" />
         <Heading color="teal.400">Welcome</Heading>
-        <Box minW={{ base: '90%', md: '468px' }}>
+        <Box width={{ base: '90vw', sm: '468px' }}>
           <form onSubmit={handleSubmit}>
             <Stack
               rounded={10}
@@ -181,7 +193,7 @@ const RegisterForm = () => {
           Sign In
         </Link>
       </Box>
-    </Flex>
+    </AnimatedFlex>
   );
 };
 

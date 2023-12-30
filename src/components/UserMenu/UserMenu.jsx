@@ -13,7 +13,7 @@ const UserMenu = () => {
 
   return (
     <Flex alignItems="center" columnGap={5}>
-      <Heading size="sm">Welcome, {user.email}</Heading>
+      <Heading size="sm">Welcome, {user.name}</Heading>
       <ChristmasButton onClick={handleLogout}>Logout</ChristmasButton>
     </Flex>
   );

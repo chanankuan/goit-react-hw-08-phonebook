@@ -21,7 +21,6 @@ export const AnimatedFlex = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  animation: ${props =>
-    props.error === 'Unable to login' ? 'shake 0.5s' : 'none'};
+  animation: ${props => (props.shake ? 'shake 0.5s' : 'none')};
   ${shakeAnimation}
 `;
