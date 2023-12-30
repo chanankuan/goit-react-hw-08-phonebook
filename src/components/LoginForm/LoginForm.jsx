@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  Flex,
   Heading,
   Input,
   Button,
@@ -18,12 +17,15 @@ import {
 } from '@chakra-ui/react';
 import { FaLock, FaEnvelope } from 'react-icons/fa';
 import { login } from '../../redux/auth/operations';
+import { AnimatedFlex } from './LoginForm.styled';
+import { selectError } from '../../redux/auth/selectors';
 
 const CFaLock = chakra(FaLock);
 const CFaEnvelope = chakra(FaEnvelope);
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -41,13 +43,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Flex
-      flexDirection="column"
-      width="100wh"
-      height="100vh"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <AnimatedFlex error={error}>
       <Stack
         flexDir="column"
         mb="2"
@@ -66,7 +62,7 @@ const LoginForm = () => {
               boxShadow="md"
             >
               <FormControl>
-                <InputGroup>
+                <InputGroup flexDirection="column">
                   <InputLeftElement
                     pointerEvents="none"
                     children={<CFaEnvelope color="gray.400" />}
@@ -79,6 +75,7 @@ const LoginForm = () => {
                     autoComplete="username"
                     value={formData.email}
                     onChange={handleChange}
+                    isRequired
                   />
                 </InputGroup>
               </FormControl>
@@ -97,6 +94,7 @@ const LoginForm = () => {
                     autoComplete="current-password"
                     value={formData.password}
                     onChange={handleChange}
+                    isRequired
                   />
                   <InputRightElement width="4.5rem">
                     <Button
@@ -121,7 +119,7 @@ const LoginForm = () => {
                 colorScheme="pink"
                 width="full"
               >
-                Login
+                Sign in
               </Button>
             </Stack>
           </form>
@@ -136,7 +134,7 @@ const LoginForm = () => {
           Sign Up
         </Link>
       </Box>
-    </Flex>
+    </AnimatedFlex>
   );
 };
 

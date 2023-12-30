@@ -29,7 +29,7 @@ export const authSlice = createSlice({
       })
       .addCase(signup.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload.message;
+        state.error = payload;
       })
       .addCase(login.pending, state => {
         state.isRefreshing = true;
@@ -43,7 +43,7 @@ export const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload.message;
+        state.error = payload;
       })
       .addCase(logout.pending, state => {
         state.isRefreshing = true;
@@ -53,7 +53,7 @@ export const authSlice = createSlice({
       })
       .addCase(logout.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload.message;
+        state.error = payload;
       })
       .addCase(getCurrentUser.pending, state => {
         state.isRefreshing = true;
@@ -66,7 +66,7 @@ export const authSlice = createSlice({
       })
       .addCase(getCurrentUser.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload.message;
+        state.error = payload;
       });
   },
 });

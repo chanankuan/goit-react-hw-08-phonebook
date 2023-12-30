@@ -14,9 +14,11 @@ import {
   Avatar,
   FormControl,
   InputRightElement,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { FaUserAlt, FaLock, FaEnvelope } from 'react-icons/fa';
 import { signup } from '../../redux/auth/operations';
+import { validateEmail, validatePass } from 'utils/validation';
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -24,6 +26,7 @@ const CFaEnvelope = chakra(FaEnvelope);
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [isInvalid, setIsInvalid] = useState({ email: null, password: null });
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -35,6 +38,21 @@ const RegisterForm = () => {
 
   const handleChange = e => {
     const { value, name } = e.target;
+
+    if (name === 'email') {
+      setIsInvalid(prevState => ({
+        ...prevState,
+        email: !validateEmail(value),
+      }));
+    }
+
+    if (name === 'password') {
+      setIsInvalid(prevState => ({
+        ...prevState,
+        password: value.length < 7 || !validatePass(value),
+      }));
+    }
+
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
@@ -82,11 +100,12 @@ const RegisterForm = () => {
                     placeholder="Name"
                     autoComplete="username"
                     onChange={handleChange}
+                    isRequired
                   />
                 </InputGroup>
               </FormControl>
-              <FormControl>
-                <InputGroup>
+              <FormControl isInvalid={isInvalid.email}>
+                <InputGroup flexDirection="column">
                   <InputLeftElement
                     pointerEvents="none"
                     children={<CFaEnvelope color="gray.400" />}
@@ -98,11 +117,15 @@ const RegisterForm = () => {
                     placeholder="Email"
                     autoComplete="username"
                     onChange={handleChange}
+                    isRequired
                   />
+                  {isInvalid.email && (
+                    <FormErrorMessage>Email is invalid.</FormErrorMessage>
+                  )}
                 </InputGroup>
               </FormControl>
-              <FormControl>
-                <InputGroup>
+              <FormControl isInvalid={isInvalid.password}>
+                <InputGroup flexDirection="column">
                   <InputLeftElement
                     pointerEvents="none"
                     color="gray.400"
@@ -115,7 +138,14 @@ const RegisterForm = () => {
                     placeholder="Password"
                     autoComplete="current-password"
                     onChange={handleChange}
+                    isRequired
                   />
+                  {isInvalid.password && (
+                    <FormErrorMessage>
+                      Password must contain at least 7 characters and include at
+                      least 1 digit.
+                    </FormErrorMessage>
+                  )}
                   <InputRightElement width="4.5rem">
                     <Button
                       h="1.75rem"
@@ -136,7 +166,7 @@ const RegisterForm = () => {
                 colorScheme="pink"
                 width="full"
               >
-                Login
+                Sign up
               </Button>
             </Stack>
           </form>
